@@ -3,7 +3,6 @@
  * A Locale object for returning localizes strings
  * 
  * @author Jon Elofson <jon.elofson@gmail.com>
- * @package Vespula
  *
  */
 
@@ -38,13 +37,11 @@ namespace Vespula;
  * </pre>
  *<code>
  * //Get a translation base on current code:
- * $locale->gettext('TEXT_HOME');
+ * echo $locale->gettext('TEXT_HOME');
  *
  * //Get a pluralized translation
- * $locale->gettext('TEXT_HOME', 4); // would return a plural form
+ * echo $locale->gettext('TEXT_HOME', 4); // would return a plural form
  * </code>
- *     
- * @package Vespula
  *
  */
 class Locale {
