@@ -6,13 +6,14 @@ This is loosely based on Paul M. Jone's SolarPHP locale implementation.
 
 1. place your locale files into a folder of your choice using xx_YY.php for the naming convention. For example, en_CA.php or en_US.php
 2. all your locale files should be in the same folder.
+3. when defining your strings, you can use an array. The first element is the singular version. The second is the plural version.
 
 ```
 <?php 
 /* en_CA.php */
 return [
     'TEXT_HOME'=>'Home',
-    'TEXT_APPLE'=>['apple', 'apples']
+    'TEXT_APPLE'=>['apple', 'apples'] // singlular and plural version of the word
 ];
 
 /* fr_CA.php */
@@ -50,6 +51,16 @@ echo $locale->gettext('TEXT_APPLE', 4);
 
 Plural forms are important because you can pass a number of objects to the gettext method and return the correct pluralized version. The plural forms can be different for each language. For example, in French, you typically say 0 pomme and not 0 pommes. In English you would say 0 apples and not 0 apple. 
 
+When creating your locale files, you can specify an array of values. The first element is the singular form, and the second is the plural form.
+
+```
+<?php
+// from en_CA.php 
+return [
+    'TEXT_PAGE'=>['page', 'pages']
+];
+```
+
 Plural forms are defined by the format for zero, 1, and more than one objects. The default looks like this
 
 ```
@@ -69,6 +80,7 @@ You can set the plural form for a given language using the setPluralForm() metho
 $form = [
     'singular', 'plural', 'plural'
 ];
+$locale->setCode('fr_CA');
 $locale->setPluralForm('fr_CA', $form);
 
 echo $locale->gettext('TEXT_APPLE', 0);
@@ -96,8 +108,3 @@ echo $locale->getLanguageCode();
 ```
 
 You can load new locale files at any time, but existing locale keys will be overwritten.
-
-
-
-
-
