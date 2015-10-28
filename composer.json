@@ -1,0 +1,21 @@
+{
+    "name": "Vespula/Locale",
+    "description": "A simple class for displaying localized strings",
+    "authors": [{
+        "name": "Jon Elofson",
+        "email": "jon.elofson@gmail.com"
+    }],
+    "license": "MIT",
+    "keywords": ["localization", "translation"],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vespula\\Locale\\": "src/"
+        }
+    }
+}

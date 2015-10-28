@@ -6,7 +6,7 @@
  *
  */
 
-namespace Vespula;
+namespace Vespula\Locale;
 
 /**
  * 
