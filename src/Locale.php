@@ -203,7 +203,7 @@ class Locale {
         if (count($form) != 3) {
             throw new \Exception('The plural form must be an array of 3 elements.');
         }
-        $valid = ['singular', 'plural'];
+        $valid = ['singular', 'plural', 'other'];
         
         foreach ($form as $info) {
             if (! in_array($info, $valid)) {
@@ -259,9 +259,9 @@ class Locale {
 			break;
 		}
 		switch ($form) {
-			default : 
-				return $string[0];
-			break;
+		    default : 
+		        return $string[0];
+		    break;
 			case 'singular' : 
 				return $string[0];
 			break;
@@ -272,7 +272,5 @@ class Locale {
 				return $string[2];
 			break;	
 		}
-		
 	}
-	
 }

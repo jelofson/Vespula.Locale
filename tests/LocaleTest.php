@@ -37,26 +37,44 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
         $this->locale->setCode('en_CA');
         
         $this->locale->load(__DIR__ . '/locales');
-        
         $expects = [
             'en_CA'=>[
                 'TEXT_HOME'=>'Home',
-                'TEXT_FOX'=>['fox', 'foxes']
+                'TEXT_FOX'=>['fox', 'foxes'],
+                'TEXT_CAT'=>['cat', 'cats', 'felines']
             ],
             'fr_CA'=>[
                 'TEXT_HOME'=>'Accueil',
-                'TEXT_FOX'=>['renard', 'renards']
+                'TEXT_FOX'=>['renard', 'renards'],
+                'TEXT_CAT'=>['chat', 'chats', 'felines']
             ]
         ];
-        return $this->assertEquals($expects, $this->locale->getStrings());
+        $this->assertEquals($expects, $this->locale->getStrings());
+        
+        $en_CA = [
+            'TEXT_HOME'=>'Home',
+            'TEXT_FOX'=>['fox', 'foxes'],
+            'TEXT_CAT'=>['cat', 'cats', 'felines']
+        ];
+        
+        $this->assertEquals($en_CA, $this->locale->getStrings('en_CA'));
+        $this->assertEquals(false, $this->locale->getStrings('en_GB'));
+        
     }
     
     public function testSetGetPluralForm()
     {
-        $form = ['singular', 'plural', 'plural'];
+        $form = ['singular', 'plural', 'other'];
         $this->locale->setPluralForm('en_CA', $form);
         
         $this->assertEquals($form, $this->locale->getPluralForm('en_CA'));
+    }
+    
+    public function testGetPluralFormFalse()
+    {
+        $form = ['singular', 'plural', 'plural'];
+        $this->locale->setPluralForm('en_CA', $form);
+        $this->assertEquals(false, $this->locale->getPluralForm('en_GB'));
     }
     
     /**
@@ -104,16 +122,69 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
      }
      
      public function testGetTextMany()
-     {
+     {  
         $this->locale->setCode('en_CA');
         $this->locale->load(__DIR__ . '/locales');
-        
-        $this->assertEquals('foxes', $this->locale->gettext('TEXT_FOX', 10));
         
         $form = ['singular', 'singular', 'plural'];
         $this->locale->setPluralForm('en_CA', $form);
         
         $this->assertEquals('foxes', $this->locale->gettext('TEXT_FOX', 2));
+        
+     }
+     
+     public function testGetTextOther()
+     {
+        $this->locale->setCode('en_CA');
+        $this->locale->load(__DIR__ . '/locales');
+        
+        $form = ['singular', 'singular', 'other'];
+        $this->locale->setPluralForm('en_CA', $form);
+        
+        $this->assertEquals('felines', $this->locale->gettext('TEXT_CAT', 3));
+     }
+     
+     public function testGetTextOtherMissing()
+     {
+        $this->locale->setCode('en_CA');
+        $this->locale->load(__DIR__ . '/locales');
+        
+        $form = ['singular', 'singular', 'other'];
+        $this->locale->setPluralForm('en_CA', $form);
+        
+        $this->assertEquals('fox', $this->locale->gettext('TEXT_FOX', 3));
+     }
+     
+     public function testGetTextMissing()
+     {
+        $this->locale->setCode('en_CA');
+        $this->locale->load(__DIR__ . '/locales');
+        
+        $this->assertEquals('TEXT_FOO', $this->locale->gettext('TEXT_FOO'));
+        
+        $this->locale->setCode('en_GB');
+        
+        $this->assertEquals('TEXT_FOO', $this->locale->gettext('TEXT_FOO'));
+        
+     }
+     
+     public function testGetTextNoPlural()
+     {
+        $this->locale->setCode('en_CA');
+        $this->locale->load(__DIR__ . '/locales');
+        
+        $this->assertEquals('Home', $this->locale->gettext('TEXT_HOME', 5));
+        
+        
+     }
+     
+     public function testGetTextDefaultPlural()
+     {
+        $this->locale->setCode('en_CA');
+        $this->locale->load(__DIR__ . '/locales');
+        
+        $this->assertEquals('Home', $this->locale->gettext('TEXT_HOME', 5));
+        
         
      }
      
