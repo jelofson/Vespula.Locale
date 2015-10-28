@@ -2,7 +2,7 @@
 
 ### A simple class for localized strings ###
 
-This is loosely based on Paul M. Jone's SolarPHP locale implementation.
+This is loosely based on Paul M. Jones' SolarPHP locale implementation.
 
 1. place your locale files into a folder of your choice using xx_YY.php for the naming convention. For example, en_CA.php or en_US.php
 2. all your locale files should be in the same folder.
