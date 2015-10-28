@@ -1,5 +1,9 @@
 # README #
 
+### Status ###
+
+![Build Status](https://travis-ci.org/jelofson/Vespula.Locale.svg?branch=master)
+
 ### A simple class for localized strings ###
 
 This is loosely based on Paul M. Jones' SolarPHP locale implementation.
