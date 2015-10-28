@@ -1,5 +1,5 @@
 {
-    "name": "Vespula/Locale",
+    "name": "vespula/locale",
     "description": "A simple class for displaying localized strings",
     "authors": [{
         "name": "Jon Elofson",
