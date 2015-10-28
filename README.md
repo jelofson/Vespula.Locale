@@ -2,7 +2,7 @@
 
 ### Status ###
 
-![Build Status](https://travis-ci.org/jelofson/Vespula.Locale.svg?branch=master)
+[![Build Status](https://travis-ci.org/jelofson/Vespula.Locale.svg?branch=master)](https://travis-ci.org/jelofson/Vespula.Locale)
 
 ### A simple class for localized strings ###
 
