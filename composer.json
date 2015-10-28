@@ -8,14 +8,14 @@
     }],
     "license": "MIT",
     "keywords": ["localization", "translation"],
-    "homepage": "https://bitbucket.org/jelofson/vespula.locale"
+    "homepage": "https://bitbucket.org/jelofson/vespula.locale",
     "require": {
         "php": ">=5.4"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
     },
-    "autoload-dev": {
+    "autoload": {
         "psr-4": {
             "Vespula\\Locale\\": "src/"
         }
