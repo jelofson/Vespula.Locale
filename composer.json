@@ -3,10 +3,12 @@
     "description": "A simple class for displaying localized strings",
     "authors": [{
         "name": "Jon Elofson",
-        "email": "jon.elofson@gmail.com"
+        "email": "jon.elofson@gmail.com",
+        "role": "Developer"
     }],
     "license": "MIT",
     "keywords": ["localization", "translation"],
+    "homepage": "https://bitbucket.org/jelofson/vespula.locale"
     "require": {
         "php": ">=5.4"
     },
