@@ -199,7 +199,19 @@ class Locale {
 	 */
 	public function setPluralForm($code, $form)
 	{
-		$this->plural_forms[$code] = $form;
+		$form = (array) $form;
+        if (count($form) != 3) {
+            throw new \Exception('The plural form must be an array of 3 elements.');
+        }
+        $valid = ['singular', 'plural'];
+        
+        foreach ($form as $info) {
+            if (! in_array($info, $valid)) {
+                throw new \Exception('Each form must be one of singular or plural');
+                break;
+            }
+        }
+        $this->plural_forms[$code] = $form;
 	}
 	
 	/**
