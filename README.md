@@ -28,7 +28,7 @@ Basic usage
 
 ```
 <?php
-$locale = new \Vespula\Locale('en_CA');
+$locale = new \Vespula\Locale\Locale('en_CA');
 $locale->load('/path/to/locales');
 
 // show all the strings for each language code
