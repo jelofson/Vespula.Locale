@@ -8,7 +8,7 @@
     }],
     "license": "MIT",
     "keywords": ["localization", "translation"],
-    "homepage": "https://bitbucket.org/jelofson/vespula.locale",
+    "homepage": "https://github.com/jelofson/Vespula.Locale",
     "require": {
         "php": ">=5.4"
     },
