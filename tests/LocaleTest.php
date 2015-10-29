@@ -70,11 +70,12 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($form, $this->locale->getPluralForm('en_CA'));
     }
     
-    public function testGetPluralFormFalse()
+    public function testGetPluralFormDefault()
     {
         $form = ['singular', 'plural', 'plural'];
         $this->locale->setPluralForm('en_CA', $form);
-        $this->assertEquals(false, $this->locale->getPluralForm('en_GB'));
+        $default = $this->locale->getPluralForm('default');
+        $this->assertEquals($default, $this->locale->getPluralForm('en_GB'));
     }
     
     /**

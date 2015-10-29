@@ -97,7 +97,7 @@ class Locale {
 	 *  
 	 * @var array The plural form organized by code. If no code, use default
 	 */
-	protected $plural_forms = array(
+	protected $plural_form = array(
 		'default'=>array('plural', 'singular', 'plural'),
 	);
 	
@@ -149,9 +149,8 @@ class Locale {
 		if ($code) {
 			if (array_key_exists($code, $this->store)) {
 				return $this->store[$code];
-			} else {
-				return false;
-			}
+			} 
+            return false;
 		}
 		
 		return $this->store;
@@ -186,10 +185,10 @@ class Locale {
 	 */
 	public function getPluralForm($code)
 	{
-		if (isset($this->plural_forms[$code])) {
-			return $this->plural_forms[$code];
+		if (isset($this->plural_form[$code])) {
+			return $this->plural_form[$code];
 		}
-		return false;
+		return $this->plural_form['default'];
 	}
 	
 	/**
@@ -211,7 +210,7 @@ class Locale {
                 break;
             }
         }
-        $this->plural_forms[$code] = $form;
+        $this->plural_form[$code] = $form;
 	}
 	
 	/**
@@ -239,38 +238,32 @@ class Locale {
 		if (count($string) == 1) {
 			return $string[0];
 		}
+		$form = $this->getPluralForm($this->code);
 		
-		if (array_key_exists($this->code, $this->plural_forms)) {
-			$forms = $this->plural_forms[$this->code];
-		} else {
-			$forms = $this->plural_forms['default'];
-		}
-		
-
 		switch ($count) {
-			default :
-				$form = $forms[2];
-			break;
-			case 1 :
-				$form = $forms[1];
-			break;
-			case 0 :
-				$form = $forms[0];
-			break;
+			case 1:
+				$form = $form[1];
+                break;
+			case 0:
+				$form = $form[0];
+                break;
+            default :
+				$form = $form[2];
+                break;
 		}
 		switch ($form) {
-		    default : 
-		        return $string[0];
-		    break;
-			case 'singular' : 
+			case 'singular': 
 				return $string[0];
-			break;
-			case 'plural' : 
+                break;
+			case 'plural': 
 				return $string[1];
-			break;
-			case 'other' && isset($string[2]) : 
+                break;
+			case 'other' && isset($string[2]): 
 				return $string[2];
-			break;	
+                break;
+            default: 
+		        return $string[0];
+                break;
 		}
 	}
 }
