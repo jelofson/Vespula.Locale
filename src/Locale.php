@@ -167,6 +167,9 @@ class Locale {
 	public function load($path)
 	{
 		$path = rtrim($path, '/');
+        if (! file_exists($path)) {
+            throw new \Exception('Path to locales does not exist');
+        }
 		$files = glob($path . "/*.php");
 		foreach ($files as $file) {
 			$code = basename($file, '.php');

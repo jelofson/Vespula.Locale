@@ -29,6 +29,16 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @expectedException     \Exception
+     * @expectedExceptionMessage Path to locales does not exist
+     */
+     
+     public function testLoadBadPath()
+     {
+        $this->locale->load('/var/nosuchplace___');
+     }
+    
+    /**
      * @covers \Vespula\Locale\Locale::load
      * @covers \Vespula\Locale\Locale::getStrings
      */
