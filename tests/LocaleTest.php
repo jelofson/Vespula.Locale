@@ -28,6 +28,13 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
         return $this->assertEquals('fr', $this->locale->getLanguageCode());
     }
     
+    public function testGetCountryCode()
+    {
+        $code = 'fr_CA';
+        $this->locale->setCode($code);
+        return $this->assertEquals('CA', $this->locale->getCountryCode());
+    }
+    
     /**
      * @expectedException     \Exception
      * @expectedExceptionMessage Path to locales does not exist

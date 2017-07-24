@@ -138,6 +138,15 @@ class Locale {
 	{
 		return substr($this->code, 0, 2);
 	}
+    
+    /**
+	 * Return the 2-letter country part of the code
+	 * @return string 
+	 */
+	public function getCountryCode()
+	{
+		return substr($this->code, 3, 2);
+	}
 	
 	/**
 	 * Get the strings in the store, optionally by code
